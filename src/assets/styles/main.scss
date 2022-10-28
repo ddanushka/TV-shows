@@ -1,0 +1,129 @@
+@import "@/assets/styles/_normalize.scss";
+@import "@/assets/styles/_variables.scss";
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $clr_grey_light;
+  max-width: $width_content;
+  margin: 0 auto;
+
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  vertical-align: middle;
+}
+
+button,
+input,
+h1 {
+  font-weight: 100;
+  font-size: 2rem;
+}
+
+
+.header {
+  display: grid;
+  grid-template-columns: 44%;
+
+  @media #{$small_and_down} {
+    grid-template-columns: auto;
+  }
+
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  @media #{$small_and_down} {
+    padding-left: 90px;
+  }
+
+  .logo {
+    display: flex;
+    width: 200px;
+    cursor: pointer;
+
+    @media #{$small_and_down} {
+      width: 88px;
+    }
+
+    left: 0;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .search-bar {
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+    width: 100%;
+
+    input {
+      font-size: 1.5rem;
+      line-height: 1;
+      background: $clr_white_opacity;
+      color: $clr_grey_dark;
+      border: 1px solid $clr_off_white;
+      width: calc(100% - 50px);
+      padding: 10px 10px 12px 68px;
+      margin-right: 10px;
+      outline: none;
+      position: relative;
+
+      &:focus,
+      &:focus-visible {
+        border-color: $clr_grey_dark;
+      }
+    }
+
+    &__icon {
+      left: 10px;
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .close,
+    &__icon {
+      position: absolute;
+      height: 100%;
+      width: 40px;
+    }
+
+    .close {
+      transition: ease 200ms;
+      opacity: 0.4;
+
+      &:hover {
+        opacity: 1;
+      }
+      .close__icon {
+        height: 28px;
+      }
+    }
+  }
+}
