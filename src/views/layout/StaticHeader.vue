@@ -1,6 +1,6 @@
 
 <template>
-  <span className="logo">
+  <span class="logo">
     <router-link to="/">
       LOGO
     </router-link>
