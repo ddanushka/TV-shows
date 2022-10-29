@@ -361,13 +361,21 @@ h1 {
     font-weight: 300;
     color: $clr_grey_dark;
     padding: 0 10px;
-    margin-right: 5px;
+    margin: 2px;
     border: 2px solid $clr_black_opacity;
     border-radius: 10px;
+    float: right;
   }
 }
 .card {
   .genre {
     position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 9;
+    span {
+      font-size: 0.8rem;
+      color: $clr_black_opacity;
+    }
   }
 }

@@ -6,7 +6,6 @@
         :title="item.name"
         :imgUrl="item.image?.medium"
         :itemLink="item.id"
-        :genres="item.genres"
       />
     </div>
     <StatusMsg v-if="errorMsg" :msg="errorMsg" />

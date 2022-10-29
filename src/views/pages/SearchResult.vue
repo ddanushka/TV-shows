@@ -7,6 +7,7 @@
       :title="item.show.name"
       :imgUrl="item.show.image?.medium"
       :itemLink="item.show.id"
+      :genres="item.show.genres"
       />
     </div>
   </div>
