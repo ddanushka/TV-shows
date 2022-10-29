@@ -1,9 +1,6 @@
 <template>
   <div class="category-list">
-    <h1 @click="loadAllshows">
-      <button class="back-btn">
-        <img src="@/assets/images/left-arrow.svg" />
-      </button>
+    <h1>
       Select a category
     </h1>
     <StatusMsg msg="simple work" />
@@ -27,7 +24,7 @@ export default {
   },
   components: {
     ListItem,
-    StatusMsg
+    StatusMsg,
   },
   methods : {
     loadAllshows() {
@@ -39,6 +36,9 @@ export default {
         console.log("Couldn't find the show you're looking for, " + err.message);
       });
     }
+  },
+  created() {
+    this.loadAllshows();
   }
 };
 </script>
