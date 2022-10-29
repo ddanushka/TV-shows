@@ -197,7 +197,6 @@ h1 {
         }
 
         img {
-          filter: blur(0);
           transform: scale(1.06);
         }
       }
@@ -212,7 +211,6 @@ h1 {
 
       img {
         width: 100%;
-        filter: blur(1px);
         transition: ease 1200ms;
       }
 
@@ -364,8 +362,7 @@ h1 {
     padding: 0 10px;
     margin: 2px;
     border: 2px solid $clr_black_opacity;
-    border-radius: 10px;
-    float: right;
+    border-radius: 20px;
   }
 }
 .card {
@@ -384,5 +381,14 @@ h1 {
       border-radius: 10px;
       background-color: $clr_black_opacity;
     }
+  }
+  .rating {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: $clr_white;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9;
   }
 }

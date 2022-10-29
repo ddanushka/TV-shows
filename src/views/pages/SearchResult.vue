@@ -8,6 +8,7 @@
       :imgUrl="item.show.image?.medium"
       :itemLink="item.show.id"
       :genres="item.show.genres"
+      :rating="item.show.rating.average"
       />
     </div>
   </div>

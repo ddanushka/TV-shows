@@ -5,6 +5,7 @@
       <div class="genre-tags">
         <span v-for="genre in genres" :key="genre">{{genre}}</span>
       </div>
+      <div class="rating">{{rating}}</div>
       <img :src="imgUrl" />
     </router-link>
   </div>
@@ -28,6 +29,10 @@ export default {
     },
     genres: {
       type: Array,
+    },
+    rating: {
+      type: [String, Number],
+      default: "N/A"
     }
   },
   computed: {
