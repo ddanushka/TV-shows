@@ -15,12 +15,12 @@ export function getShow(key) {
     return getData(`https://api.tvmaze.com/shows/${key}`);
 }
 
-// get single recipe
+// get episodes
 export function getEpisodes(key) {
     return getData(`https://api.tvmaze.com/shows/${key}/episodes`);
 }
 
-// search for recipes
+// search for shows
 export function getSearchResult(keyword) {
     return getData(`https://api.tvmaze.com/search/shows?q=${keyword}`);
 }

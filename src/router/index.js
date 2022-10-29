@@ -8,7 +8,7 @@ const routes = [
     component: CategoryList
   },
   {
-    path: '/view',
+    path: '/view/:id',
     name: 'view',
     component: () => import('../views/pages/ViewDetails.vue')
   },

@@ -41,7 +41,11 @@ h1 {
   font-size: 2rem;
 }
 
+.bold {
+  font-weight: bold;
+}
 
+// Top header styles
 .header {
   display: grid;
   grid-template-columns: 44%;
@@ -116,13 +120,218 @@ h1 {
 
     .close {
       transition: ease 200ms;
-      opacity: 0.4;
+      opacity: 0.6;
 
       &:hover {
         opacity: 1;
       }
       .close__icon {
         height: 28px;
+      }
+      &[disabled] {
+        opacity: 0.04;
+      }
+    }
+  }
+}
+
+// General body styles
+.body-content {
+  overflow: auto;
+  height: calc(100vh - 110px);
+  padding: 0 40px 20px 36px;
+
+  @media #{$small_and_down} {
+    padding: 0 20px 20px 18px;
+  }
+
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $clr_grey_dark;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $clr_grey_light;
+
+    &:active,
+    &:hover {
+      background-color: $clr_off_white;
+    }
+  }
+
+  .back-btn {
+    margin-right: 10px;
+    img {
+      width: 28px;
+    }
+  }
+
+  .list__container {
+    display: grid;
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $clr_black_opacity;
+        transition: ease 600ms;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 0.4;
+          z-index: -2;
+        }
+
+        img {
+          filter: blur(0);
+          transform: scale(1.06);
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      img {
+        width: 100%;
+        filter: blur(1px);
+        transition: ease 1200ms;
+      }
+
+      .card__title {
+        position: absolute;
+        z-index: 4;
+        width: 100%;
+        text-align: center;
+        color: $clr_white;
+      }
+    }
+  }
+
+  // General listing styles
+  .list {
+    padding-bottom: 40px;
+
+    .list__container {
+      align-items: start;
+      grid-template-columns: repeat(4, calc(25% - 24px));
+      grid-gap: 32px;
+
+      @media #{$small_to_medium} {
+        grid-template-columns: repeat(3, calc(33% - 20px));
+      }
+
+      @media #{$small_and_down} {
+        grid-template-columns: repeat(2, calc(50% - 16px));
+      }
+
+      .card {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Listing styles for category
+  .category-list {
+    .list__container {
+      grid-template-columns: repeat(5, 200px);
+      grid-auto-rows: 200px;
+      grid-gap: 40px;
+      justify-content: space-between;
+
+      @media #{$medium_to_large} {
+        grid-template-columns: repeat(4, 20vw);
+        grid-auto-rows: 20vw;
+        grid-gap: 4vw;
+      }
+
+      @media #{$small_to_medium} {
+        grid-template-columns: repeat(3, 28vw);
+        grid-auto-rows: 28vw;
+        grid-gap: 3vw;
+      }
+
+      @media #{$small_and_down} {
+        grid-template-columns: repeat(2, 44vw);
+        grid-auto-rows: 44vw;
+        grid-gap: calc(8vw / 2);
+      }
+    }
+  }
+}
+
+// Show details page styles
+.show-details {
+  .detail-grid {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, calc(25% - 24px));
+    grid-template-rows: auto;
+    grid-gap: 32px;
+    grid-template-areas: "img img desc desc" "img img ind ind" ". . footer footer";
+
+    @media #{$small_and_down} {
+      grid-template-columns: repeat(1, calc(100%));
+      grid-template-areas: "img" "desc" "ind" " ." "footer";
+    }
+
+    .media {
+      grid-area: img;
+
+      img {
+        width: 100%;
+      }
+
+      iframe {
+        margin-top: 32px;
+        width: 100%;
+        border: none;
+      }
+    }
+
+    .decscription {
+      white-space: pre-line;
+      font-weight: 100;
+      grid-area: desc;
+    }
+
+    .ind-list {
+      grid-area: ind;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    i {
+      grid-area: footer;
+
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        display: inline-block;
       }
     }
   }
