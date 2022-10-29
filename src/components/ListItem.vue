@@ -2,7 +2,7 @@
   <div class="card">
     <router-link :to="link">
       <h3 class="card__title">{{ title }}</h3>
-      <div class="genre">
+      <div class="genre-tags">
         <span v-for="genre in genres" :key="genre">{{genre}}</span>
       </div>
       <img :src="imgUrl" />

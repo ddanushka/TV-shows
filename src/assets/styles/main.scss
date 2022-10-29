@@ -359,6 +359,7 @@ h1 {
   span {
     font-size: 1rem;
     font-weight: 300;
+    font-style: italic;
     color: $clr_grey_dark;
     padding: 0 10px;
     margin: 2px;
@@ -368,14 +369,20 @@ h1 {
   }
 }
 .card {
-  .genre {
+  .genre-tags {
     position: absolute;
+    margin-left: 5px;
     top: 4px;
     right: 4px;
     z-index: 9;
     span {
       font-size: 0.8rem;
-      color: $clr_black_opacity;
+      font-style: italic;
+      color: $clr_off_white;
+      padding: 0 5px;
+      margin-right: 2px;
+      border-radius: 10px;
+      background-color: $clr_black_opacity;
     }
   }
 }
