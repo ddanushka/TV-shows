@@ -2,13 +2,12 @@
   <div class="list">
     <h1>Search results for "<span class="bold">{{keyword}}</span>"</h1>
     <div class="list__container">
-      <div v-for="item in searchList" :key="item.show.id">
-        <ListItem
-        :title="item.show.name"
-        :imgUrl="item.show.image?.medium"
-        :itemLink="item.show.id"
-        />
-      </div>
+      <ListItem
+      v-for="item in searchList" :key="item.show.id"
+      :title="item.show.name"
+      :imgUrl="item.show.image?.medium"
+      :itemLink="item.show.id"
+      />
     </div>
   </div>
   <StatusMsg v-if="errorMsg" :msg="errorMsg"/>
@@ -36,6 +35,7 @@ export default {
       getSearchResult(keyword)
         .then((res) => {
           this.searchList = res;
+          console.log(res);
         })
         .catch((err) => {
           this.errorMsg = "Couldn't find the show you're looking for, " + err.message;

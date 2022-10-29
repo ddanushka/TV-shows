@@ -2,6 +2,9 @@
   <div class="card">
     <router-link :to="link">
       <h3 class="card__title">{{ title }}</h3>
+      <div class="genre">
+        <span v-for="genre in genres" :key="genre">{{genre}}</span>
+      </div>
       <img :src="imgUrl" />
     </router-link>
   </div>
@@ -23,6 +26,9 @@ export default {
       type: [String, Number],
       default: "/",
     },
+    genres: {
+      type: Array,
+    }
   },
   computed: {
     link() {

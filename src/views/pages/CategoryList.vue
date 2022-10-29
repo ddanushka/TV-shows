@@ -2,13 +2,12 @@
   <div class="category-list">
     <h1>Select a category</h1>
     <div class="list__container">
-      <div v-for="item in showList" :key="item.id">
-        <ListItem
-          :title="item.name"
-          :imgUrl="item.image?.medium"
-          :itemLink="item.id"
-        />
-      </div>
+      <ListItem v-for="item in showList" :key="item.id"
+        :title="item.name"
+        :imgUrl="item.image?.medium"
+        :itemLink="item.id"
+        :genres="item.genres"
+      />
     </div>
     <StatusMsg v-if="errorMsg" :msg="errorMsg" />
   </div>
@@ -34,6 +33,7 @@ export default {
       AllShows()
         .then((res) => {
           this.showList = res;
+          console.log(res)
         })
         .catch((err) => {
           this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
