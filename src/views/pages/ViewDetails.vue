@@ -27,7 +27,7 @@
         </div>
       </div>
     </article>
-    <StatusMsg v-else :msg="msg" />
+    <StatusMsg v-if="errorMsg" :msg="errorMsg"/>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ import backButton from "@/components/backButton.vue";
 export default {
   data() {
     return {
-      msg: "",
+      errorMsg: "",
       itemId: useRoute().params.id ? useRoute().params.id : "1",
       showDetails: {},
     };
@@ -55,14 +55,12 @@ export default {
     if (itemId) {
       this.itenId = itemId;
     }
-    console.log(this.itemId);
     getShow(this.itemId)
       .then((res) => {
-        console.log(res);
         this.showDetails = res;
       })
       .catch((err) => {
-        this.msg = "Couldn't find the show you're looking for, " + err.message;
+        this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
       });
   },
 };

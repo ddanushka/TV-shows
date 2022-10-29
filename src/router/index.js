@@ -3,8 +3,7 @@ import CategoryList from '../views/pages/CategoryList.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/:pathMatch(.*)*",
     component: CategoryList
   },
   {
@@ -13,7 +12,7 @@ const routes = [
     component: () => import('../views/pages/ViewDetails.vue')
   },
   {
-    path: '/search',
+    path: '/search/:keyword',
     name: 'search',
     component: () => import('../views/pages/SearchResult.vue')
   }

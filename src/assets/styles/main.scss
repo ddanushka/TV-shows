@@ -336,3 +336,22 @@ h1 {
     }
   }
 }
+
+// Status msg
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: $clr_white;
+  background-color: $clr_black_opacity;
+
+  .status__text {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+}

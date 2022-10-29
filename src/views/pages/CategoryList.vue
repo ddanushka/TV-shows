@@ -1,14 +1,16 @@
 <template>
   <div class="category-list">
-    <h1>
-      Select a category
-    </h1>
-    <StatusMsg msg="simple work" />
-    <div class="list__container" >
+    <h1>Select a category</h1>
+    <div class="list__container">
       <div v-for="item in showList" :key="item.id">
-        <ListItem :title="item.name" :imgUrl="item.image?.medium" :itemLink="item.id" />
+        <ListItem
+          :title="item.name"
+          :imgUrl="item.image?.medium"
+          :itemLink="item.id"
+        />
       </div>
     </div>
+    <StatusMsg v-if="errorMsg" :msg="errorMsg" />
   </div>
 </template>
 
@@ -19,26 +21,27 @@ import { AllShows } from "@/services/data";
 export default {
   data() {
     return {
-      showList : [],
+      showList: [],
+      errorMsg: "",
     };
   },
   components: {
     ListItem,
     StatusMsg,
   },
-  methods : {
+  methods: {
     loadAllshows() {
       AllShows()
-      .then((res) => {
-        this.showList = res
-      })
-      .catch((err) => {
-        console.log("Couldn't find the show you're looking for, " + err.message);
-      });
-    }
+        .then((res) => {
+          this.showList = res;
+        })
+        .catch((err) => {
+          this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
+        });
+    },
   },
   created() {
     this.loadAllshows();
-  }
+  },
 };
 </script>

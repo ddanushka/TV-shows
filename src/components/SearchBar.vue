@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       disabled: Boolean,
-      search: "",
+      search: this.$route.params.keyword ? this.$route.params.keyword : "",
       placeholder: "Search...",
     };
   },
@@ -30,13 +30,27 @@ export default {
 
     submitSearch() {
       if (this.search) {
-        this.$emit("search-shows", this.search);
+        this.$router.push({
+          path: `/search/${this.search}`,
+        });
+      }
+      else {
+        this.$router.push({
+          path: `/`,
+        });
       }
     },
 
     initSearch() {
       this.search = "";
       this.$router.push({ path: "/" });
+    },
+  },
+  watch: {
+    $route() {
+      this.search = this.$route.params.keyword
+        ? this.$route.params.keyword
+        : "";
     },
   },
 };

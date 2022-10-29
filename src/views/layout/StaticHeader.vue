@@ -5,7 +5,7 @@
       LOGO
     </router-link>
   </span>
-  <SearchBar @search-shows="searchShows"/>
+  <SearchBar/>
 </template>
 
 <script>
@@ -15,12 +15,7 @@ export default {
   name: "StaticHeader",
   components: {
     SearchBar,
-  },
-  methods: {
-    searchShows(key) {
-      console.log(key);
-    },
-  },
+  }
 };
 </script>
 

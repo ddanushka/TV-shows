@@ -1,29 +1,30 @@
 <template>
-  <StatusMsg msg="simple work" />
   <div class="list">
-    <h1>Search results for "<span class="bold">Keyword</span>"</h1>
+    <h1>Search results for "<span class="bold">{{keyword}}</span>"</h1>
     <div class="list__container">
-      <div v-for="item in searchList" :key="item.id">
+      <div v-for="item in searchList" :key="item.show.id">
         <ListItem
-          :title="item.name"
-          :imgUrl="item.image?.medium"
-          :itemLink="item.id"
+        :title="item.show.name"
+        :imgUrl="item.show.image?.medium"
+        :itemLink="item.show.id"
         />
       </div>
     </div>
   </div>
+  <StatusMsg v-if="errorMsg" :msg="errorMsg"/>
 </template>
 
 <script>
 import { getSearchResult } from "@/services/data";
 import StatusMsg from "@/components/StatusMsg.vue";
 import ListItem from "@/components/ListItem.vue";
-import { useRoute } from "vue-router";
+
 export default {
   data() {
     return {
       searchList: [],
-      keyword: ""
+      keyword: this.$route.params.keyword,
+      errorMsg:"",
     };
   },
   components: {
@@ -31,24 +32,24 @@ export default {
     ListItem,
   },
   methods: {
-    loadAllshows() {
-      getSearchResult()
+    searchShows(keyword) {
+      getSearchResult(keyword)
         .then((res) => {
           this.searchList = res;
         })
         .catch((err) => {
-          console.log(
-            "Couldn't find the show you're looking for, " + err.message
-          );
+          this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
         });
     },
   },
   created() {
-    const keyword = useRoute().params.key;
-    if(keyword) {
-      this.keyword = keyword
-    }
-    this.loadAllshows();
+    this.searchShows(this.keyword);
   },
+  watch: {
+    $route() {
+      this.keyword = this.$route.params.keyword;
+      this.searchShows(this.keyword);
+    }
+  }
 };
 </script>
