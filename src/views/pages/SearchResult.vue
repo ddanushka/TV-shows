@@ -12,7 +12,7 @@
       />
     </div>
   </div>
-  <StatusMsg v-if="errorMsg" :msg="errorMsg"/>
+  <StatusMsg :msg="errorMsg"/>
 </template>
 
 <script>

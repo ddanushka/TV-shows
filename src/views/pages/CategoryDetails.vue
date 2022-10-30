@@ -9,7 +9,7 @@
         :rating="item.rating.average"
       />
     </div>
-    <StatusMsg v-if="errorMsg" :msg="errorMsg" />
+    <StatusMsg :msg="errorMsg" />
   </div>
 </template>
 

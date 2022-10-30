@@ -27,7 +27,7 @@
         </div>
       </div>
     </article>
-    <StatusMsg v-if="errorMsg" :msg="errorMsg"/>
+    <StatusMsg :msg="errorMsg"/>
   </div>
 </template>
 
@@ -54,6 +54,7 @@ export default {
     getShow(this.itemId)
       .then((res) => {
         this.showDetails = res;
+        console.log(this.showDetails)
       })
       .catch((err) => {
         this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
