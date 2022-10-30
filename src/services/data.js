@@ -12,7 +12,13 @@ export function allShows() {
 
 // get specific show
 export function getShow(key) {
-    return getData(`https://api.tvmaze.com/shows/${key}`);
+     getData(`https://api.tvmaze.com/shows/${key}`).then((res) => {
+        console.log(res)
+        return res;
+      })
+      .catch((err) => {
+        return err.message;
+      });
 }
 
 // get episodes
