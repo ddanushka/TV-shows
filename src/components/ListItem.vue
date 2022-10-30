@@ -6,7 +6,8 @@
         <span v-for="genre in genres" :key="genre">{{genre}}</span>
       </div>
       <div class="rating">{{rating}}</div>
-      <img :src="imgUrl" />
+      <img v-if="imgUrl" :src="imgUrl" />
+      <img v-else src="@/assets/images/no-image.jpeg" />
     </router-link>
   </div>
 </template>

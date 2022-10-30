@@ -10,20 +10,21 @@
           <a :href="showDetails.officialSite">
             <img :src="showDetails.image?.original" :alt="showDetails.name" />
           </a>
+          <small v-if="showDetails.officialSite">
+            {{ showDetails.name }} by <a :href="showDetails.officialSite">{{ showDetails.network?.name }}</a>
+          </small>
         </div>
         <div class="decscription">
-          <h2>{{ showDetails.name }}</h2>
+          <h2 v-if="showDetails.name">{{ showDetails.name }}</h2>
           <div class="genre">
             <span v-for="genre in showDetails.genres" :key="genre">{{
               genre
             }}</span>
           </div>
-          <div v-html="showDetails.summary"></div>
-        </div>
-        <div>
-          <a :href="showDetails.officialSite"
-            >{{ showDetails.name }} By {{ showDetails.network?.name }}</a
-          >
+          <div v-if="showDetails.summary" v-html="showDetails.summary"></div>
+          <div v-if="showDetails.rating?.average">Rating: <span class="bold">{{showDetails.rating?.average}}</span></div>
+          <div>Language: {{showDetails.language}}</div>
+          <div>Status: {{showDetails.status}}</div>
         </div>
       </div>
     </article>
@@ -43,7 +44,13 @@ export default {
     return {
       errorMsg: "",
       itemId: useRoute().params.id ? useRoute().params.id : "",
-      showDetails: {},
+      showDetails: {
+        name: "",
+        summary: "",
+        language: "",
+        status: "",
+        genres: []
+      },
     };
   },
   components: {
@@ -54,7 +61,7 @@ export default {
     getShow(this.itemId)
       .then((res) => {
         this.showDetails = res;
-        console.log(this.showDetails)
+        console.log(res)
       })
       .catch((err) => {
         this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
