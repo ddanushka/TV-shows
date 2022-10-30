@@ -43,7 +43,6 @@ watch(() => route.params, () => {
 
 onMounted(() => {
   searchShows(data)
-  console.log(data.keyword)
 })
 
 </script>

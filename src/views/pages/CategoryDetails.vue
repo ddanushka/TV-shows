@@ -32,14 +32,12 @@ function loadAllshows() {
   allShows()
     .then((res) => {
       const { showList } = orderShows(res)
-      console.log(showList)
       data.showList = showList.filter(item => item.name == data.itemId)[0];
       if (!data.showList) {
         data.errorMsg = `Sorry, "${data.itemId}" Category is not found.`;
       }
     })
     .catch((err) => {
-      console.log(err)
       data.errorMsg = "Couldn't find the show you're looking for, " + err.message;
     });
 }
