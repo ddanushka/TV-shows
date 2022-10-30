@@ -22,7 +22,7 @@ const route = useRoute();
 
 let data = reactive({
   searchList: [],
-  keyword: route.params.keyword,
+  keyword: route.params.keyword ? route.params.keyword : "",
   errorMsg: "",
 })
 

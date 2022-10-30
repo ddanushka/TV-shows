@@ -5,19 +5,9 @@
       LOGO
     </router-link>
   </span>
-  <SearchBar/>
+  <SearchBar />
 </template>
 
-<script>
+<script setup>
 import SearchBar from "@/components/SearchBar.vue";
-
-export default {
-  name: "StaticHeader",
-  components: {
-    SearchBar,
-  }
-};
 </script>
-
-<style>
-</style>
