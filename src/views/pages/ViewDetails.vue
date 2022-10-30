@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       errorMsg: "",
-      itemId: useRoute().params.id ? useRoute().params.id : "1",
+      itemId: useRoute().params.id ? useRoute().params.id : "",
       showDetails: {},
     };
   },
@@ -51,10 +51,6 @@ export default {
     backButton,
   },
   created() {
-    const itemId = useRoute().params.id;
-    if (itemId) {
-      this.itenId = itemId;
-    }
     getShow(this.itemId)
       .then((res) => {
         this.showDetails = res;

@@ -1,8 +1,8 @@
 <template>
   <div class="category-list">
-    <h1>Select a category</h1>
+    <h1><backButton />{{showList.name}}</h1>
     <div class="list__container">
-      <ListItem v-for="item in showList" :key="item.id"
+      <ListItem v-for="item in showList.shows" :key="item.id"
         :title="item.name"
         :imgUrl="item.image?.medium"
         :itemLink="item.id"
@@ -14,26 +14,31 @@
 </template>
 
 <script>
+import { useRoute } from "vue-router";
 import ListItem from "@/components/ListItem.vue";
 import StatusMsg from "@/components/StatusMsg.vue";
-import { AllShows } from "@/services/data";
+import { allShows, orderShows } from "@/services/data";
+import backButton from '@/components/backButton.vue';
 export default {
   data() {
     return {
       showList: [],
+      orderedShowList: [],
       errorMsg: "",
+      itemId: useRoute().params.id ? useRoute().params.id : "",
     };
   },
   components: {
     ListItem,
     StatusMsg,
+    backButton
   },
   methods: {
     loadAllshows() {
-      AllShows()
+      allShows()
         .then((res) => {
-          this.showList = res;
-          console.log(res)
+          const { showList } = orderShows(res)
+          this.showList = showList.filter(item=> item.name == this.itemId)[0]
         })
         .catch((err) => {
           this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
@@ -41,7 +46,7 @@ export default {
     },
   },
   created() {
-    this.loadAllshows();
+    this.loadAllshows(this.itemId);
   },
 };
 </script>

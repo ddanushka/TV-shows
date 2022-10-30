@@ -7,8 +7,12 @@ const routes = [
     component: CategoryList
   },
   {
+    path: '/category/:id',
+    component: () => import('../views/pages/CategoryDetails.vue')
+  },
+  {
     path: '/view/:id',
-    name: 'view',
+    name: 'home',
     component: () => import('../views/pages/ViewDetails.vue')
   },
   {

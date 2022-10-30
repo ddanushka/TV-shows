@@ -1,14 +1,19 @@
 <template>
   <div class="category-list">
     <h1>Select a category</h1>
-    <div class="list__container">
-      <ListItem v-for="item in showList" :key="item.id"
-        :title="item.name"
-        :imgUrl="item.image?.medium"
-        :itemLink="item.id"
-        :rating="item.rating.average"
-      />
-    </div>
+    <section v-for="genre in orderedShowList" :key="genre.name">
+      <h2><router-link :to="'/category/'+ genre.name">{{genre.name}}</router-link></h2>
+      <div class="category-list__item">
+        <div class="list__container row">
+          <ListItem v-for="item in genre.shows" :key="item.id"
+            :title="item.name"
+            :imgUrl="item.image?.medium"
+            :itemLink="item.id"
+            :rating="item.rating?.average"
+          />
+        </div>
+      </div>
+    </section>
     <StatusMsg v-if="errorMsg" :msg="errorMsg" />
   </div>
 </template>
@@ -16,11 +21,11 @@
 <script>
 import ListItem from "@/components/ListItem.vue";
 import StatusMsg from "@/components/StatusMsg.vue";
-import { AllShows } from "@/services/data";
+import { allShows, orderShows } from "@/services/data";
 export default {
   data() {
     return {
-      showList: [],
+      orderedShowList: [],
       errorMsg: "",
     };
   },
@@ -30,10 +35,10 @@ export default {
   },
   methods: {
     loadAllshows() {
-      AllShows()
+      allShows()
         .then((res) => {
-          this.showList = res;
-          console.log(res)
+          const { showList} = orderShows(res)
+          this.orderedShowList = showList
         })
         .catch((err) => {
           this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
@@ -42,6 +47,7 @@ export default {
   },
   created() {
     this.loadAllshows();
+
   },
 };
 </script>

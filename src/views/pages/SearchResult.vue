@@ -37,7 +37,6 @@ export default {
       getSearchResult(keyword)
         .then((res) => {
           this.searchList = res;
-          console.log(res);
         })
         .catch((err) => {
           this.errorMsg = "Couldn't find the show you're looking for, " + err.message;
