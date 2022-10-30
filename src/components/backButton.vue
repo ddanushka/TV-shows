@@ -4,13 +4,10 @@
   </button>
 </template>
 
-<script>
-// import { useRouter } from 'vue-router';
-export default {
-  methods: {
-    gotback() {
-      this.$router.go(-1);
-    },
-  },
-};
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter()
+function gotback() {
+  router.go(-1);
+}
 </script>

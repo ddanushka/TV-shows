@@ -1,14 +1,15 @@
 <template>
   <div v-if="msg" class="status">
-    <span class="status__text">{{ msg }}</span>
+    <span class="status__text">{{ props.msg }}</span>
   </div>
 </template>
 
-<script>
-export default {
-  name: "StatusMessage",
-  props: {
-    msg: String,
+<script setup>
+import { defineProps } from 'vue';
+const props = defineProps({
+  msg: {
+    type: String,
+    default: ""
   },
-};
+})
 </script>
