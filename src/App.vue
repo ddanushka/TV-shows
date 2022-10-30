@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <StaticHeader/>
+    <StatusMsg/>
   </header>
   <main class="body-content">
     <router-view/>
@@ -11,11 +12,12 @@
   @import '@/assets/styles/main.scss';
 </style>
 
-<script>
+<script setup>
+import { provide } from 'vue';
+import StatusMsg from './components/StatusMsg.vue';
+import store from './store';
 import StaticHeader from './views/layout/StaticHeader.vue';
-export default {
-  components: {
-    StaticHeader
-  }
-}
+
+provide("store", store);
+
 </script>

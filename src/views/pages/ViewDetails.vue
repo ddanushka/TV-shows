@@ -34,22 +34,20 @@
         </div>
       </div>
     </article>
-    <StatusMsg :msg="data.errorMsg" />
   </div>
 </template>
 
 <script setup>
 
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, inject } from "vue";
 import { useRoute } from "vue-router";
 import { getShow } from "@/services/data";
-import StatusMsg from "@/components/StatusMsg.vue";
 import backButton from "@/components/backButton.vue";
 
 const route = useRoute()
+const store = inject("store")
 
 let data = reactive({
-  errorMsg: "",
   itemId: route.params.id ? route.params.id : "",
   showDetails: {
     name: "",
@@ -66,7 +64,8 @@ onMounted(() => {
       data.showDetails = res;
     })
     .catch((err) => {
-      data.errorMsg = "Couldn't find the show you're looking for, " + err.message;
+      let msg = "Couldn't find the show you're looking for, " + err.message;
+      store.methods.setErrorMessage(msg)
     });
 })
 

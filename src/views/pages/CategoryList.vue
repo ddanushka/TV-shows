@@ -12,20 +12,19 @@
         </div>
       </div>
     </section>
-    <StatusMsg :msg="data.errorMsg" />
   </div>
 </template>
 
 <script setup>
 
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, inject } from "vue";
 import ListItem from "@/components/ListItem.vue";
-import StatusMsg from "@/components/StatusMsg.vue";
 import { allShows, orderShows } from "@/services/data";
+
+const store = inject("store")
 
 let data = reactive({
   orderedShowList: [],
-  errorMsg: "",
 })
 
 function loadAllshows() {
@@ -35,7 +34,8 @@ function loadAllshows() {
       data.orderedShowList = showList
     })
     .catch((err) => {
-      data.errorMsg = "Couldn't find the show you're looking for, " + err.message;
+      let msg = "Couldn't find the show you're looking for, " + err.message;
+      store.methods.setErrorMessage(msg)
     });
 }
 

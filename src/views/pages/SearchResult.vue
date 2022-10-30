@@ -7,23 +7,21 @@
         :rating="item.show.rating.average" />
     </div>
   </div>
-  <StatusMsg :msg="data.errorMsg" />
 </template>
 
 <script setup>
 
-import { reactive, watch, onMounted } from "vue";
+import { reactive, watch, onMounted, inject } from "vue";
 import { useRoute } from "vue-router";
 import { getSearchResult } from "@/services/data";
-import StatusMsg from "@/components/StatusMsg.vue";
 import ListItem from "@/components/ListItem.vue";
 
 const route = useRoute();
+const store = inject("store");
 
 let data = reactive({
   searchList: [],
   keyword: route.params.keyword ? route.params.keyword : "",
-  errorMsg: "",
 })
 
 function searchShows(data) {
@@ -32,7 +30,8 @@ function searchShows(data) {
       data.searchList = res;
     })
     .catch((err) => {
-      data.errorMsg = "Couldn't find the show you're looking for, " + err.message;
+      let msg = "Couldn't find the show you're looking for, " + err.message;
+      store.methods.setErrorMessage(msg)
     });
 }
 
