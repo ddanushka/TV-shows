@@ -5,7 +5,7 @@
       <div class="genre-tags">
         <span v-for="genre in props.genres" :key="genre">{{ genre }}</span>
       </div>
-      <div class="rating">&#9733; {{ props.rating }}</div>
+      <div class="rating">&#9733; {{ props.rating ? props.rating : "N/A" }}</div>
       <img v-if="imgUrl" :src="imgUrl" />
       <img v-else src="@/assets/images/no-image.jpeg" />
     </router-link>
