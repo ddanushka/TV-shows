@@ -400,6 +400,7 @@ a {
   height: 100vh;
   color: $clr_white;
   background-color: $clr_black_opacity;
+  z-index: 9;
 
   .status__text {
     font-size: 2rem;
