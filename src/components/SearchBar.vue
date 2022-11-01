@@ -23,7 +23,7 @@ let data = reactive({
 })
 
 function checkText() {
-  data.search === "" ? (data.disabled = true) : (data.disabled = false);
+  data.disabled = data.search === "" ? true : false;
 }
 
 function submitSearch() {
@@ -41,6 +41,7 @@ function submitSearch() {
 
 function initSearch() {
   data.search = "";
+  checkText();
   router.push({ path: "/" });
 }
 
