@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = "https://api.tvmaze.com"
+
 const getData = async (url) => {
   const { data } = await axios.get(url);
   return data;
@@ -7,22 +9,22 @@ const getData = async (url) => {
 
 // get all shows
 export function allShows() {
-  return getData(`https://api.tvmaze.com/shows`);
+  return getData(`${BASE_URL}/shows`);
 }
 
 // get specific show
 export function getShow(key) {
-  return getData(`https://api.tvmaze.com/shows/${key}`);
+  return getData(`${BASE_URL}/shows/${key}`);
 }
 
 // get episodes
 export function getEpisodes(key) {
-  return getData(`https://api.tvmaze.com/shows/${key}/episodes`);
+  return getData(`${BASE_URL}/shows/${key}/episodes`);
 }
 
 // search for shows
 export function getSearchResult(keyword) {
-  return getData(`https://api.tvmaze.com/search/shows?q=${keyword}`);
+  return getData(`${BASE_URL}/search/shows?q=${keyword}`);
 }
 
 // Order for categories
