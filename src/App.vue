@@ -13,11 +13,14 @@
 </style>
 
 <script setup>
-import { provide } from 'vue';
+import { provide, onMounted } from 'vue';
 import StatusMsg from './components/StatusMsg.vue';
 import store from './store';
 import StaticHeader from './views/layout/StaticHeader.vue';
 
 provide("store", store);
 
+onMounted(() => {
+  store.dispatch("loadAllshows")
+})
 </script>

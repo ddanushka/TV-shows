@@ -55,6 +55,15 @@ export default createStore({
 
     // Show only selected Category
     loadSingleCategory({ commit }, payload) {
+      let showSingleList = this.state.orderedShowList.filter(item => item.name == payload)[0];
+      commit("setSingleCategory", showSingleList)
+      if (!showSingleList) {
+        let msg = `Sorry, "${payload}" Category is not found.`;
+        commit("setErrorMessage", msg)
+      }
+    },
+    // Show only selected Category from the URL
+    preLoadSingleCategory({ commit }, payload) {
       allShows()
         .then((res) => {
           const { showList } = orderShows(res)
