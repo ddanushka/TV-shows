@@ -17,14 +17,9 @@
 
 <script setup>
 
-import { onMounted } from "vue";
 import ListItem from "@/components/ListItem.vue";
 import { useStore } from "vuex";
 
 const store = useStore();
-
-onMounted(() => {
-  store.dispatch("loadAllshows")
-})
 
 </script>

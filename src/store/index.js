@@ -55,21 +55,12 @@ export default createStore({
 
     // Show only selected Category
     loadSingleCategory({ commit }, payload) {
-      allShows()
-        .then((res) => {
-          const { showList } = orderShows(res)
-          let showSingleList = showList.filter(item => item.name == payload)[0];
-          commit("setSingleCategory", showSingleList)
-          if (!showSingleList) {
-            let msg = `Sorry, "${payload}" Category is not found.`;
-            commit("setErrorMessage", msg)
-
-          }
-        })
-        .catch((err) => {
-          let msg = "Couldn't find the Category you're looking for, " + err.message;
-          commit("setErrorMessage", msg)
-        });
+      let showSingleList = this.state.orderedShowList.filter(item => item.name == payload)[0];
+      commit("setSingleCategory", showSingleList)
+      if (!showSingleList) {
+        let msg = `Sorry, "${payload}" Category is not found.`;
+        commit("setErrorMessage", msg)
+      }
     },
 
     // Show Details of selected show
