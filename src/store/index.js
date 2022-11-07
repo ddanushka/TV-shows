@@ -62,24 +62,6 @@ export default createStore({
         commit("setErrorMessage", msg)
       }
     },
-    // Show only selected Category from the URL
-    preLoadSingleCategory({ commit }, payload) {
-      allShows()
-        .then((res) => {
-          const { showList } = orderShows(res)
-          let showSingleList = showList.filter(item => item.name == payload)[0];
-          commit("setSingleCategory", showSingleList)
-          if (!showSingleList) {
-            let msg = `Sorry, "${payload}" Category is not found.`;
-            commit("setErrorMessage", msg)
-
-          }
-        })
-        .catch((err) => {
-          let msg = "Couldn't find the Category you're looking for, " + err.message;
-          commit("setErrorMessage", msg)
-        });
-    },
 
     // Show Details of selected show
     viewDetails({ commit }, payload) {
