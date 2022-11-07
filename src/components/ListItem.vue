@@ -6,7 +6,7 @@
         <span v-for="genre in props.genres" :key="genre">{{ genre }}</span>
       </div>
       <div class="rating">&#9733; {{ props.rating ? props.rating : "N/A" }}</div>
-      <img v-if="imgUrl" :src="imgUrl" />
+      <img v-if="setImgUrl" :src="setImgUrl" @error="data.isLoaded = false"/>
       <img v-else src="@/assets/images/no-image.jpeg" />
     </router-link>
   </div>
@@ -14,9 +14,15 @@
 
 <script setup>
 
-import { defineProps } from 'vue';
+import { defineProps, reactive } from 'vue';
 import { computed } from '@vue/reactivity';
 
+const data = reactive({
+  isLoaded : {
+    type: Boolean,
+    default: true
+  }
+})
 const props = defineProps({
   title: {
     type: String,
@@ -37,6 +43,9 @@ const props = defineProps({
     type: [String, Number],
     default: "N/A"
   }
+})
+const setImgUrl = computed(()=>{
+  return data.isLoaded ? props.imgUrl : null;
 })
 
 const link = computed(() => {
