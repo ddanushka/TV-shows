@@ -18,10 +18,7 @@ import { defineProps, reactive } from 'vue';
 import { computed } from '@vue/reactivity';
 
 const data = reactive({
-  isLoaded : {
-    type: Boolean,
-    default: true
-  }
+  isLoaded: true
 })
 const props = defineProps({
   title: {
